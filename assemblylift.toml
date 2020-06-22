@@ -1,0 +1,8 @@
+# Generated with assemblylift-cli 0.1.0
+
+[project]
+name = "examples"
+version = "0.1.0"
+
+[services]
+default = { name = "default-service" }

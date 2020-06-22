@@ -1,0 +1,12 @@
+# Generated with assemblylift-cli 0.1.0
+
+[service]
+name = "default-service"
+version = ""
+
+[api]
+name = "my-service-api"
+
+[api.functions.hello-world]
+name = "hello-world"
+handler_name = "handler"

@@ -1,0 +1,5 @@
+// Generated with assemblylift-cli 0.1.0
+.DS_Store
+*.wasm
+target/
+build/
