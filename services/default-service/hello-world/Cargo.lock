@@ -52,9 +52,9 @@ dependencies = [
 
 [[package]]
 name = "assemblylift-core-guest"
-version = "0.1.0"
+version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e064c525fa7e21d681d7f114080f9524c4b17fa2c0f015e04118522218bc851a"
+checksum = "8853a8c8766f392318a349049b88af186c49e2bd17c0a6dec733c3c64a03bca5"
 dependencies = [
  "paste",
 ]
