@@ -5,4 +5,4 @@ name = "examples"
 version = "0.1.0"
 
 [services]
-default = { name = "default-service" }
+hello = { name = "hello-service" }

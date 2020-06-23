@@ -1,7 +1,7 @@
 # Generated with assemblylift-cli 0.1.0
 
 [service]
-name = "default-service"
+name = "hello-service"
 version = ""
 
 [api]
