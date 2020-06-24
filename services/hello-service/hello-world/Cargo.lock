@@ -3,8 +3,6 @@
 [[package]]
 name = "assemblylift-awslambda-guest"
 version = "0.1.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ec98f8a640c186b740ab7033526b97d0653552b29ed48b8a626efa8ac54e8427"
 dependencies = [
  "assemblylift-core-event-guest",
  "assemblylift-core-guest",
@@ -15,9 +13,7 @@ dependencies = [
 
 [[package]]
 name = "assemblylift-awslambda-iomod-guest"
-version = "0.1.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d31a66222d254a5f97ebcc2a6ab7334aac64fa24379f2fa836426d485e55e8e9"
+version = "0.1.1"
 dependencies = [
  "assemblylift-core-event-guest",
  "assemblylift-core-guest",
@@ -31,17 +27,13 @@ dependencies = [
 [[package]]
 name = "assemblylift-core-event-common"
 version = "0.1.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "300c3f2baf58761d4ebe9880e5fca714e87af86d3d23ffeac38fa4651be5d2cd"
 dependencies = [
  "serde",
 ]
 
 [[package]]
 name = "assemblylift-core-event-guest"
-version = "0.1.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a468c14e901ebc6b4f03938310079b7278c09ebc4043bf91feab59d4c5b8807f"
+version = "0.1.1"
 dependencies = [
  "assemblylift-core-event-common",
  "futures",
@@ -53,8 +45,6 @@ dependencies = [
 [[package]]
 name = "assemblylift-core-guest"
 version = "0.1.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8853a8c8766f392318a349049b88af186c49e2bd17c0a6dec733c3c64a03bca5"
 dependencies = [
  "paste",
 ]

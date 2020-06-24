@@ -2,3 +2,4 @@
 .terraform/
 net/
 .DS_Store
+*.tfstate*
