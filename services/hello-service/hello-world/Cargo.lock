@@ -2,40 +2,42 @@
 # It is not intended for manual editing.
 [[package]]
 name = "assemblylift-awslambda-guest"
-version = "0.1.0"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "408c80f30624a59e67d733f57bf980cc3583b6b3288ad069d16c4cf6fdae41ac"
 dependencies = [
- "assemblylift-core-event-guest",
  "assemblylift-core-guest",
+ "assemblylift-core-io-guest",
  "direct-executor",
  "serde",
  "serde_json",
 ]
 
 [[package]]
-name = "assemblylift-awslambda-iomod-guest"
-version = "0.1.1"
+name = "assemblylift-core-guest"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "200cd617bff4abac1b45af0ecbfe881ccebf357b9a7bc6b13f229d22a209fbfd"
 dependencies = [
- "assemblylift-core-event-guest",
- "assemblylift-core-guest",
- "base64",
- "bytes",
  "paste",
- "serde",
- "serde_json",
 ]
 
 [[package]]
-name = "assemblylift-core-event-common"
+name = "assemblylift-core-io-common"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "02d8ad05b439cbbe9c029e0e4b6298ef1fa49dd1f23981ae5769e9123a9a1b32"
+dependencies = [
+ "serde",
+]
+
+[[package]]
+name = "assemblylift-core-io-guest"
 version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5b20689dade93b96ebc156147ca9c86d2b8d64170615b61cb74c6160ebfd440d"
 dependencies = [
- "serde",
-]
-
-[[package]]
-name = "assemblylift-core-event-guest"
-version = "0.1.1"
-dependencies = [
- "assemblylift-core-event-common",
+ "assemblylift-core-io-common",
  "futures",
  "lazy_static",
  "serde",
@@ -43,10 +45,23 @@ dependencies = [
 ]
 
 [[package]]
-name = "assemblylift-core-guest"
-version = "0.1.1"
+name = "assemblylift-core-iomod-guest"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "25d9676cbdc6ef1033a9fd83f2d03bbf6a86b0f936716bab8e8712bda5e30f15"
+
+[[package]]
+name = "assemblylift-iomod-dynamodb-guest"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "098e757c2ca85c12c05f62524b4b807a2b7ed438bda510b2f2cbea9be582db7b"
 dependencies = [
- "paste",
+ "assemblylift-core-io-guest",
+ "assemblylift-core-iomod-guest",
+ "base64",
+ "bytes",
+ "serde",
+ "serde_json",
 ]
 
 [[package]]
@@ -195,13 +210,14 @@ dependencies = [
 
 [[package]]
 name = "hello-world"
-version = "0.1.0"
+version = "0.0.0"
 dependencies = [
  "assemblylift-awslambda-guest",
- "assemblylift-awslambda-iomod-guest",
- "assemblylift-core-event-guest",
  "assemblylift-core-guest",
+ "assemblylift-core-io-guest",
+ "assemblylift-iomod-dynamodb-guest",
  "direct-executor",
+ "serde",
  "serde_json",
 ]
 

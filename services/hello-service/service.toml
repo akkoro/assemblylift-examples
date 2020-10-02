@@ -5,8 +5,14 @@ name = "hello-service"
 version = ""
 
 [api]
-name = "my-service-api"
+name = "hello-service-api"
 
 [api.functions.hello-world]
 name = "hello-world"
 handler_name = "handler"
+http = { verb = "GET", path = "/hello" }
+
+[iomod.dependencies.aws-dynamodb]
+version = "0.1.0"
+type = "file"
+from = "/home/xlem/Development/Projects/assemblylift/dynamodb"

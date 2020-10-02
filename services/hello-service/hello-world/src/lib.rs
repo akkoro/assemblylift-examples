@@ -2,18 +2,24 @@
 
 extern crate asml_awslambda;
 
-use direct_executor;
 use asml_core::GuestCore;
-use asml_awslambda::{*, AwsLambdaClient, LambdaContext};
+use asml_awslambda::*;
 
-use asml_awslambda_iomod::{structs, database::*};
+use asml_iomod_dynamodb::{structs, *};
+
+macro_rules! http_ok {
+    ($response:ident) => {
+        AwsLambdaClient::success(serde_json::to_string(
+            &ApiGatewayResponse::ok(serde_json::to_string(&$response).unwrap(), None)).unwrap());
+    }
+}
 
 handler!(context: LambdaContext, async {
     let event = context.event;
     AwsLambdaClient::console_log(format!("Read event: {:?}", event));
 
     let input: structs::ListTablesInput = Default::default();
-    let response = aws_dynamodb_list_tables(input).await;
+    let response = list_tables(input).await;
 
-    AwsLambdaClient::success(format!("{:?}", response).to_string());
+    http_ok!(response);
 });
