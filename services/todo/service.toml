@@ -1,0 +1,20 @@
+[service]
+name = "todo"
+
+[api]
+name = "todo-service-api"
+
+[api.functions.create]
+name = "create"
+handler_name = "handler"
+http = { verb = "POST", path = "/todos"}
+
+[iomod.dependencies.aws-dynamodb]
+version = "0.1.0"
+type = "file"
+from = "/home/xlem/Development/Root/iomod/akkoro-aws-dynamodb"
+
+[iomod.dependencies.std-crypto]
+version = "0.1.0"
+type = "file"
+from = "/home/xlem/Development/Root/iomod/akkoro-std-crypto"

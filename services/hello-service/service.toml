@@ -15,4 +15,4 @@ http = { verb = "GET", path = "/hello" }
 [iomod.dependencies.aws-dynamodb]
 version = "0.1.0"
 type = "file"
-from = "/home/xlem/Development/Projects/assemblylift/dynamodb"
+from = "/home/xlem/Development/Root/iomod/akkoro-aws-dynamodb"

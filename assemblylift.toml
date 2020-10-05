@@ -6,3 +6,4 @@ version = "0.1.0"
 
 [services]
 hello = { name = "hello-service" }
+todo = { name = "todo" }
