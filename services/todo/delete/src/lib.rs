@@ -1,11 +1,12 @@
+// Generated with assemblylift-cli 0.2.1
+
 extern crate asml_awslambda;
 
 use serde::{Serialize, Deserialize};
 
 use asml_core::GuestCore;
-use asml_awslambda::*;
+use asml_awslambda::{*, AwsLambdaClient, LambdaContext};
 
-use asml_iomod_crypto::uuid4;
 use asml_iomod_dynamodb::{structs, structs::AttributeValue, *};
 
 macro_rules! http_ok {
@@ -19,20 +20,15 @@ handler!(context: LambdaContext, async {
     let event: ApiGatewayEvent = context.event;
     match event.body {
         Some(content) => {
-            let content: CreateTodoRequest = serde_json::from_str(&content).unwrap();
+            let content: DeleteTodoRequest = serde_json::from_str(&content).unwrap();
 
-            let uuid = uuid4(()).await;
-
-            let mut input: structs::PutItemInput = Default::default();
+            let mut input: structs::DeleteItemInput = Default::default();
             input.table_name = String::from("todo-example");
-            input.item = Default::default();
-            input.item.insert(String::from("pk"), val!(S => uuid));
-            input.item.insert(String::from("body"), val!(S => content.body));
-            input.item.insert(String::from("date"), val!(S => content.date));
+            input.key = Default::default();
+            input.key.insert(String::from("pk"), val!(S => content.uuid));
+            input.key.insert(String::from("date"), val!(S => content.date));
 
-            put_item(input).await;
-
-            let response = CreateTodoResponse { uuid };
+            let response = delete_item(input).await;
             http_ok!(response);
         }
 
@@ -44,12 +40,7 @@ handler!(context: LambdaContext, async {
 });
 
 #[derive(Serialize, Deserialize)]
-struct CreateTodoRequest {
-    pub body: String,
-    pub date: String,
-}
-
-#[derive(Serialize, Deserialize)]
-struct CreateTodoResponse{
+struct DeleteTodoRequest {
     pub uuid: String,
+    pub date: String,
 }

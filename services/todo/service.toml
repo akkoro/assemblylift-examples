@@ -9,6 +9,16 @@ name = "create"
 handler_name = "handler"
 http = { verb = "POST", path = "/todos"}
 
+[api.functions.delete]
+name = "delete"
+handler_name = "handler"
+http = { verb = "DELETE", path = "/todos" }
+
+[api.functions.get_all]
+name = "get_all"
+handler_name = "handler"
+http = { verb = "GET", path = "/todos" }
+
 [iomod.dependencies.aws-dynamodb]
 version = "0.1.0"
 type = "file"
