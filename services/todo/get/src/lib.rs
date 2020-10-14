@@ -4,7 +4,6 @@ extern crate asml_awslambda;
 
 use serde::{Serialize, Deserialize};
 
-use direct_executor;
 use asml_core::GuestCore;
 use asml_awslambda::{*, AwsLambdaClient, LambdaContext};
 
