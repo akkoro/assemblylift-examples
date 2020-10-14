@@ -2,12 +2,12 @@
 # It is not intended for manual editing.
 [[package]]
 name = "assemblylift-awslambda-guest"
-version = "0.2.0"
+version = "0.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "408c80f30624a59e67d733f57bf980cc3583b6b3288ad069d16c4cf6fdae41ac"
+checksum = "b56bca163a73755f06cb77473f032a886f0f624545464cff71d75b5d4f12ed57"
 dependencies = [
  "assemblylift-core-guest",
- "assemblylift-core-io-guest",
+ "assemblylift-core-io-guest 0.2.0",
  "direct-executor",
  "serde",
  "serde_json",
@@ -45,6 +45,19 @@ dependencies = [
 ]
 
 [[package]]
+name = "assemblylift-core-io-guest"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "36f85d6103ee903ac729ec69639f447f6f496633ddc0aa38de7fc22c068ee06e"
+dependencies = [
+ "assemblylift-core-io-common",
+ "futures",
+ "lazy_static",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "assemblylift-core-iomod-guest"
 version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -53,8 +66,10 @@ checksum = "63e743cfd0978c79067008117b1de642660f8ba809acb9648d6a078c09c7b723"
 [[package]]
 name = "assemblylift-iomod-crypto-guest"
 version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "66dd476758ea75c18eeab3109b1ba1d30bc53c8ea63799e06a87258888a55f2e"
 dependencies = [
- "assemblylift-core-io-guest",
+ "assemblylift-core-io-guest 0.1.0",
  "assemblylift-core-iomod-guest",
  "serde",
  "serde_json",
@@ -63,8 +78,10 @@ dependencies = [
 [[package]]
 name = "assemblylift-iomod-dynamodb-guest"
 version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "15b839eebe35de0dc0460de7a0fdefda3e69a9664671f1a8ce9f2fce496e038e"
 dependencies = [
- "assemblylift-core-io-guest",
+ "assemblylift-core-io-guest 0.1.0",
  "assemblylift-core-iomod-guest",
  "base64",
  "bytes",
@@ -90,7 +107,7 @@ version = "0.0.0"
 dependencies = [
  "assemblylift-awslambda-guest",
  "assemblylift-core-guest",
- "assemblylift-core-io-guest",
+ "assemblylift-core-io-guest 0.2.0",
  "assemblylift-iomod-crypto-guest",
  "assemblylift-iomod-dynamodb-guest",
  "direct-executor",

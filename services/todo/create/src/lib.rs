@@ -8,13 +8,6 @@ use asml_awslambda::*;
 use asml_iomod_crypto::uuid4;
 use asml_iomod_dynamodb::{structs, structs::AttributeValue, *};
 
-macro_rules! http_ok {
-    ($response:ident) => {
-        AwsLambdaClient::success(serde_json::to_string(
-            &ApiGatewayResponse::ok(serde_json::to_string(&$response).unwrap(), None)).unwrap());
-    }
-}
-
 handler!(context: LambdaContext, async {
     let event: ApiGatewayEvent = context.event;
     match event.body {
@@ -30,15 +23,17 @@ handler!(context: LambdaContext, async {
             input.item.insert(String::from("body"), val!(S => content.body));
             input.item.insert(String::from("date"), val!(S => content.date));
 
-            put_item(input).await;
-
-            let response = CreateTodoResponse { uuid };
-            http_ok!(response);
+            match put_item(input).await {
+                Ok(_) => {
+                    let response = CreateTodoResponse { uuid };
+                    http_ok!(response);
+                }
+                Err(why) => http_error!(why.to_string())
+            }
         }
 
         None => {
-            let response = "ERROR";
-            http_ok!(response);
+            http_error!(String::from("missing request payload"));
         }
     }
 });

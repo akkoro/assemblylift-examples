@@ -14,8 +14,8 @@ name = "delete"
 handler_name = "handler"
 http = { verb = "DELETE", path = "/todos" }
 
-[api.functions.get_all]
-name = "get_all"
+[api.functions.get]
+name = "get"
 handler_name = "handler"
 http = { verb = "GET", path = "/todos" }
 

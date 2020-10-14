@@ -7,19 +7,13 @@ use asml_awslambda::*;
 
 use asml_iomod_dynamodb::{structs, *};
 
-macro_rules! http_ok {
-    ($response:ident) => {
-        AwsLambdaClient::success(serde_json::to_string(
-            &ApiGatewayResponse::ok(serde_json::to_string(&$response).unwrap(), None)).unwrap());
-    }
-}
-
 handler!(context: LambdaContext, async {
     let event = context.event;
     AwsLambdaClient::console_log(format!("Read event: {:?}", event));
 
     let input: structs::ListTablesInput = Default::default();
-    let response = list_tables(input).await;
-
-    http_ok!(response);
+    match list_tables(input).await {
+        Ok(response) => http_ok!(response),
+        Err(why) => http_error!(why.to_string())
+    }
 });

@@ -4,6 +4,7 @@ extern crate asml_awslambda;
 
 use serde::{Serialize, Deserialize};
 
+use direct_executor;
 use asml_core::GuestCore;
 use asml_awslambda::{*, AwsLambdaClient, LambdaContext};
 
@@ -13,28 +14,35 @@ handler!(context: LambdaContext, async {
     let event: ApiGatewayEvent = context.event;
     match event.body {
         Some(content) => {
-            let content: DeleteTodoRequest = serde_json::from_str(&content).unwrap();
+            let content: GetItemRequest = serde_json::from_str(&content).unwrap();
 
-            let mut input: structs::DeleteItemInput = Default::default();
+            let mut input: structs::GetItemInput = Default::default();
             input.table_name = String::from("todo-example");
             input.key = Default::default();
             input.key.insert(String::from("pk"), val!(S => content.uuid));
             input.key.insert(String::from("date"), val!(S => content.date));
 
-            match delete_item(input).await {
-                Ok(response) => http_ok!(response),
+            match get_item(input).await {
+                Ok(result) => {
+                    match result.item {
+                        Some(item) => http_ok!(item),
+                        None => http_error!(String::from("NotFound")),
+                    }
+                }
                 Err(why) => http_error!(why.to_string())
             }
         }
-
-        None => {
-            http_error!(String::from("missing request payload"));
-        }
+        None => http_error!(String::from("missing request payload"))
     }
 });
 
 #[derive(Serialize, Deserialize)]
-struct DeleteTodoRequest {
+struct GetItemRequest {
     pub uuid: String,
     pub date: String,
+}
+
+#[derive(Serialize, Deserialize)]
+struct GetItemError {
+    pub kind: &'static str,
 }
