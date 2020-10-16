@@ -2,12 +2,12 @@
 # It is not intended for manual editing.
 [[package]]
 name = "assemblylift-awslambda-guest"
-version = "0.2.1"
+version = "0.2.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b56bca163a73755f06cb77473f032a886f0f624545464cff71d75b5d4f12ed57"
+checksum = "71cf8125b21e73d67c924d8774619269a360752bd1957846a79d430be9c67d52"
 dependencies = [
  "assemblylift-core-guest",
- "assemblylift-core-io-guest 0.2.0",
+ "assemblylift-core-io-guest",
  "direct-executor",
  "serde",
  "serde_json",
@@ -33,22 +33,9 @@ dependencies = [
 
 [[package]]
 name = "assemblylift-core-io-guest"
-version = "0.1.0"
+version = "0.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5b20689dade93b96ebc156147ca9c86d2b8d64170615b61cb74c6160ebfd440d"
-dependencies = [
- "assemblylift-core-io-common",
- "futures",
- "lazy_static",
- "serde",
- "serde_json",
-]
-
-[[package]]
-name = "assemblylift-core-io-guest"
-version = "0.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "36f85d6103ee903ac729ec69639f447f6f496633ddc0aa38de7fc22c068ee06e"
+checksum = "ed7a4de2ad1d7f992235bf2a6d57f66a8a39a338286f09f32f0a8f6e5ea3ad3c"
 dependencies = [
  "assemblylift-core-io-common",
  "futures",
@@ -65,11 +52,11 @@ checksum = "63e743cfd0978c79067008117b1de642660f8ba809acb9648d6a078c09c7b723"
 
 [[package]]
 name = "assemblylift-iomod-dynamodb-guest"
-version = "0.1.1"
+version = "0.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "15b839eebe35de0dc0460de7a0fdefda3e69a9664671f1a8ce9f2fce496e038e"
+checksum = "56427c432811a50a4ddb43e977a84199b3df9e11db0420b1c88fa803ed5ff043"
 dependencies = [
- "assemblylift-core-io-guest 0.1.0",
+ "assemblylift-core-io-guest",
  "assemblylift-core-iomod-guest",
  "base64",
  "bytes",
@@ -199,7 +186,7 @@ version = "0.0.0"
 dependencies = [
  "assemblylift-awslambda-guest",
  "assemblylift-core-guest",
- "assemblylift-core-io-guest 0.2.0",
+ "assemblylift-core-io-guest",
  "assemblylift-iomod-dynamodb-guest",
  "direct-executor",
  "serde",
