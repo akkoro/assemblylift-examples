@@ -19,7 +19,7 @@ handler!(context: LambdaContext, async {
             input.table_name = String::from("todo-example");
             input.key = Default::default();
             input.key.insert(String::from("pk"), val!(S => content.uuid));
-            input.key.insert(String::from("date"), val!(S => content.date));
+            input.key.insert(String::from("timestamp"), val!(N => content.timestamp));
 
             match get_item(input).await {
                 Ok(result) => {
@@ -38,7 +38,7 @@ handler!(context: LambdaContext, async {
 #[derive(Serialize, Deserialize)]
 struct GetItemRequest {
     pub uuid: String,
-    pub date: String,
+    pub timestamp: u64,
 }
 
 #[derive(Serialize, Deserialize)]

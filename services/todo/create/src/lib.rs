@@ -3,6 +3,7 @@ extern crate asml_awslambda;
 use serde::{Serialize, Deserialize};
 
 use asml_core::GuestCore;
+use asml_core_io::get_time;
 use asml_awslambda::*;
 
 use asml_iomod_crypto::uuid4;
@@ -21,7 +22,7 @@ handler!(context: LambdaContext, async {
             input.item = Default::default();
             input.item.insert(String::from("pk"), val!(S => uuid));
             input.item.insert(String::from("body"), val!(S => content.body));
-            input.item.insert(String::from("date"), val!(S => content.date));
+            input.item.insert(String::from("timestamp"), val!(N => get_time()));
 
             match put_item(input).await {
                 Ok(_) => {
@@ -41,7 +42,6 @@ handler!(context: LambdaContext, async {
 #[derive(Serialize, Deserialize)]
 struct CreateTodoRequest {
     pub body: String,
-    pub date: String,
 }
 
 #[derive(Serialize, Deserialize)]
